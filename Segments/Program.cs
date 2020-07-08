@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Segments
 {
@@ -28,14 +29,25 @@ namespace Segments
                     segment[k] = '0';
                 }
             }
-
             int counter = 0;
             for (int l = 0; l < segment.Length; l++)
             {
                 if(l+c < segment.Length)
                 {
-                    if (segment[l] == segment[l + c]) continue;
+                    if (segment[l] == segment[l + c])
+                    {
+                        l = l + c-1;
+                    }
                     else counter++;
+                }
+                else if( l+c >= segment.Length)
+                {
+                    if(segment.Length - 1 - l < c)
+                    {
+                        counter += segment.Length - 1 - l;
+                        
+                    }
+                    break;
                 }
             }
             Console.WriteLine(counter);
