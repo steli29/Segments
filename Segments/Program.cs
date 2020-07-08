@@ -29,6 +29,14 @@ namespace Segments
                     segment[k] = '0';
                 }
             }
+            string LineSegment = string.Join("-",segment);
+            string newLine = "";
+            for(int i = 0; i < LineSegment.Length; i++)
+            {
+                if (LineSegment[i] == '0') continue;
+                else newLine += LineSegment[i];
+            }
+            Console.WriteLine(newLine);
             int counter = 0;
             for (int l = 0; l < segment.Length; l++)
             {
